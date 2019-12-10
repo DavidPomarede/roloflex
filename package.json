@@ -1,0 +1,21 @@
+{
+  "name": "roloflex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/DavidPomarede/roloflex.git",
+  "author": "davidpom <davidpom@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidPomarede/roloflex/issues"
+  },
+  "homepage": "https://github.com/DavidPomarede/roloflex#readme",
+  "dependencies": {
+    "commander": "^4.0.1",
+    "inquirer": "^7.0.0",
+    "mongoose": "^5.8.0"
+  }
+}
