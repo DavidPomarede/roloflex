@@ -47,7 +47,7 @@ program
 program
   .command('*')
   .description('no arg')
-  .action(console.log("Arguments: \n a [FirstName LastName Phone Email] adds a contact\n r [queryString] retrieves a contact\n u [id] update contact\n d [id] delete contact\n Command-c to quit.")
+  .action(console.log("Arguments: \n a [FirstName LastName Phone Email] adds a contact\n r [queryString] retrieves a contact\n u [id] update contact\n d [id] delete contact\n l list all contacts\n Command-c to quit.")
 );
 
 program
