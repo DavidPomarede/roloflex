@@ -1,8 +1,18 @@
+#!/usr/bin/env node
+
 const program = require('commander');
-// Require logic.js file and extract controller functions using JS destructuring assignment
-const { addContact, getContact } = require('./logic');
 
 const { prompt } = require('inquirer'); // require inquirerjs library
+
+// Require logic.js file and extract controller functions using JS destructuring assignment
+const { 
+  addContact,
+  getContact,
+  getContactList,
+  updateContact,
+  deleteContact
+} = require('./logic'); 
+
 
 // Craft questions to present to users
 const questions = [
@@ -37,7 +47,7 @@ program
 program
   .command('*')
   .description('no arg')
-  .action(console.log("Arguments: \n a [FirstName LastName Phone Email] adds a contact\n r [queryString] retrieves a contact\n Command-c to quit.")
+  .action(console.log("Arguments: \n a [FirstName LastName Phone Email] adds a contact\n r [queryString] retrieves a contact\n u [id] update contact\n d [id] delete contact\n Command-c to quit.")
 );
 
 program
@@ -55,4 +65,30 @@ program
   .description('Get contact')
   .action(name => getContact(name));
 
+program
+  .command('updateContact <_id>')
+  .alias('u')
+  .description('Update contact')
+  .action(_id => {
+    prompt(questions).then((answers) =>
+      updateContact(_id, answers));
+  });
+
+program
+  .command('deleteContact <_id>')
+  .alias('d')
+  .description('Delete contact')
+  .action(_id => deleteContact(_id));
+
+program
+  .command('getContactList')
+  .alias('l')
+  .description('List contacts')
+  .action(() => getContactList());
+
+// Assert that a VALID command is provided 
+if (!process.argv.slice(2).length || !/[arudl]/.test(process.argv.slice(2))) {
+  program.outputHelp();
+  process.exit();
+}
 program.parse(process.argv);

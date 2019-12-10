@@ -55,5 +55,52 @@ const getContact = (name) => {
   });
 };
 
+/**
+ * @function  [getContactList]
+ * @returns {Sting} status
+ */
+const updateContact = (_id, contact) => {
+  Contact.update({ _id }, contact)
+  .exec((err, status) => {
+    assert.equal(null, err);
+    console.info('Updated successfully');
+    mongoose.connection.close();
+  });
+};
+
+
+/**
+ * @function  [deleteContact]
+ * @returns {String} status
+ */
+const deleteContact = (_id) => {
+  Contact.deleteOne({ _id })
+  .exec((err, status) => {
+    assert.equal(null, err);
+    console.info('Deleted successfully');
+    mongoose.connection.close();
+  })
+}
+
+/**
+ * @function  [getContactList]
+ * @returns [contactlist] contacts
+ */
+const getContactList = () => {
+  Contact.find()
+  .exec((err, contacts) => {
+    assert.equal(null, err);
+    console.info(contacts);
+    console.info(`${contacts.length} matches`);
+    mongoose.connection.close();
+  })
+}
+
 // Export all methods
-module.exports = {     addContact, getContact };
+module.exports = {   
+  addContact, 
+  getContact, 
+  getContactList,
+  updateContact,
+  deleteContact 
+};

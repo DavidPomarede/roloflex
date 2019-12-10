@@ -1,5 +1,7 @@
 {
   "name": "roloflex",
+  "preferGlobal": true,
+  "bin": "./contact.js",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
